@@ -126,23 +126,23 @@ func (t *Thread) GetID() string {
 	return t.ID
 }
 
-type Type string
+type ReferenceType string
 
 const (
-	TypeThread Type = "thread"
-	TypeWeb    Type = "web"
-	TypeFile   Type = "file"
+	ReferenceTypeThread ReferenceType = "thread"
+	ReferenceTypeWeb    ReferenceType = "web"
+	ReferenceTypeFile   ReferenceType = "file"
 )
 
 type Reference struct {
-	Type    Type   `firestore:"type" json:"type" yaml:"type"`
-	Id      string `firestore:"id" json:"id" yaml:"id"`
-	Title   string `firestore:"title" json:"title" yaml:"title"`
-	Summary string `firestore:"summary" json:"summary" yaml:"summary"`
-	Url     string `firestore:"url" json:"url" yaml:"url"`
+	Type    ReferenceType `firestore:"type" json:"type" yaml:"type"`
+	Id      string        `firestore:"id" json:"id" yaml:"id"`
+	Title   string        `firestore:"title" json:"title" yaml:"title"`
+	Summary string        `firestore:"summary" json:"summary" yaml:"summary"`
+	Url     string        `firestore:"url" json:"url" yaml:"url"`
 }
 
-func (r *Reference) GetType() Type {
+func (r *Reference) GetType() ReferenceType {
 	if r == nil {
 		return ""
 	}
@@ -204,16 +204,16 @@ func (u *Usage) GetTotalTokens() int {
 	return u.TotalTokens
 }
 
-type Role string
+type MessageRole string
 
 const (
-	RoleUser  Role = "user"
-	RoleModel Role = "model"
+	MessageRoleUser  MessageRole = "user"
+	MessageRoleModel MessageRole = "model"
 )
 
 type Message struct {
 	ID            string       `firestore:"-" json:"id" yaml:"id"`
-	Role          Role         `firestore:"role" json:"role" yaml:"role"`
+	Role          MessageRole  `firestore:"role" json:"role" yaml:"role"`
 	Message       string       `firestore:"message" json:"message" yaml:"message"`
 	Embedding     []float64    `firestore:"embedding" json:"embedding" yaml:"embedding"`
 	References    []*Reference `firestore:"references" json:"references" yaml:"references"`
@@ -225,7 +225,7 @@ type Message struct {
 	CreatedAt     time.Time    `firestore:"createdAt" json:"createdAt" yaml:"createdAt"`
 }
 
-func (m *Message) GetRole() Role {
+func (m *Message) GetRole() MessageRole {
 	if m == nil {
 		return ""
 	}
