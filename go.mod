@@ -1,3 +1,3 @@
 module github.com/yu-fukunaga/youdoyou-firestore-gen-go
 
-go 1.25.8
+go 1.25.9
