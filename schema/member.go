@@ -12,8 +12,8 @@ const (
 )
 
 // MemberPath returns the document path for a member.
-func MemberPath(memberId string) string {
-	return "members/" + memberId
+func MemberPath(memberID string) string {
+	return "members/" + memberID
 }
 
 type MemberType string

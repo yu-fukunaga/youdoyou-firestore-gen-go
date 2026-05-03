@@ -8,102 +8,102 @@ import (
 
 // Collection names
 const (
-	CollectionProjects = "projects"
+	CollectionDomains = "domains"
 )
 
-// ProjectPath returns the document path for a project.
-func ProjectPath(projectID string) string {
-	return "projects/" + projectID
+// DomainPath returns the document path for a domain.
+func DomainPath(domainID string) string {
+	return "domains/" + domainID
 }
 
-type Epic struct {
+type Topic struct {
 	Id       string `firestore:"id" json:"id" yaml:"id"`
 	Title    string `firestore:"title" json:"title" yaml:"title"`
 	ImageUrl string `firestore:"imageUrl" json:"imageUrl" yaml:"imageUrl"`
 }
 
-func (e *Epic) GetId() string {
-	if e == nil {
+func (t *Topic) GetId() string {
+	if t == nil {
 		return ""
 	}
-	return e.Id
+	return t.Id
 }
 
-func (e *Epic) GetTitle() string {
-	if e == nil {
+func (t *Topic) GetTitle() string {
+	if t == nil {
 		return ""
 	}
-	return e.Title
+	return t.Title
 }
 
-func (e *Epic) GetImageUrl() string {
-	if e == nil {
+func (t *Topic) GetImageUrl() string {
+	if t == nil {
 		return ""
 	}
-	return e.ImageUrl
+	return t.ImageUrl
 }
 
-type Project struct {
+type Domain struct {
 	ID          string    `firestore:"-" json:"id" yaml:"id"`
 	Title       string    `firestore:"title" json:"title" yaml:"title"`
 	Description string    `firestore:"description" json:"description" yaml:"description"`
-	Epics       []*Epic   `firestore:"epics" json:"epics" yaml:"epics"`
+	Topics      []*Topic  `firestore:"topics" json:"topics" yaml:"topics"`
 	IconUrl     string    `firestore:"iconUrl" json:"iconUrl" yaml:"iconUrl"`
 	CreatedAt   time.Time `firestore:"createdAt" json:"createdAt" yaml:"createdAt"`
 	UpdatedAt   time.Time `firestore:"updatedAt" json:"updatedAt" yaml:"updatedAt"`
 }
 
-func (p *Project) GetTitle() string {
-	if p == nil {
+func (d *Domain) GetTitle() string {
+	if d == nil {
 		return ""
 	}
-	return p.Title
+	return d.Title
 }
 
-func (p *Project) GetDescription() string {
-	if p == nil {
+func (d *Domain) GetDescription() string {
+	if d == nil {
 		return ""
 	}
-	return p.Description
+	return d.Description
 }
 
-func (p *Project) GetEpics() []*Epic {
-	if p == nil {
+func (d *Domain) GetTopics() []*Topic {
+	if d == nil {
 		return nil
 	}
-	return p.Epics
+	return d.Topics
 }
 
-func (p *Project) GetIconUrl() string {
-	if p == nil {
+func (d *Domain) GetIconUrl() string {
+	if d == nil {
 		return ""
 	}
-	return p.IconUrl
+	return d.IconUrl
 }
 
-func (p *Project) GetCreatedAt() time.Time {
-	if p == nil {
+func (d *Domain) GetCreatedAt() time.Time {
+	if d == nil {
 		return time.Time{}
 	}
-	return p.CreatedAt
+	return d.CreatedAt
 }
 
-func (p *Project) GetUpdatedAt() time.Time {
-	if p == nil {
+func (d *Domain) GetUpdatedAt() time.Time {
+	if d == nil {
 		return time.Time{}
 	}
-	return p.UpdatedAt
+	return d.UpdatedAt
 }
 
-func (p *Project) GetID() string {
-	if p == nil {
+func (d *Domain) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return p.ID
+	return d.ID
 }
 
-// EpicFields contains field names for Epic.
-var EpicFields = struct {
+// TopicFields contains field names for Topic.
+var TopicFields = struct {
 	Id       string
 	Title    string
 	ImageUrl string
@@ -113,12 +113,12 @@ var EpicFields = struct {
 	ImageUrl: "imageUrl",
 }
 
-// ProjectFields contains field names for Project.
-var ProjectFields = struct {
+// DomainFields contains field names for Domain.
+var DomainFields = struct {
 	Id          string
 	Title       string
 	Description string
-	Epics       string
+	Topics      string
 	IconUrl     string
 	CreatedAt   string
 	UpdatedAt   string
@@ -126,7 +126,7 @@ var ProjectFields = struct {
 	Id:          "id",
 	Title:       "title",
 	Description: "description",
-	Epics:       "epics",
+	Topics:      "topics",
 	IconUrl:     "iconUrl",
 	CreatedAt:   "createdAt",
 	UpdatedAt:   "updatedAt",
