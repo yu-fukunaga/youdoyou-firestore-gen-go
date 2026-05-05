@@ -18,8 +18,8 @@ func ActivityPath(activityID string) string {
 
 type Activity struct {
 	ID        string    `firestore:"-" json:"id" yaml:"id"`
-	ProjectId string    `firestore:"projectId" json:"projectId" yaml:"projectId"`
-	EpicId    string    `firestore:"epicId" json:"epicId" yaml:"epicId"`
+	DomainId  string    `firestore:"domainId" json:"domainId" yaml:"domainId"`
+	TopicId   string    `firestore:"topicId" json:"topicId" yaml:"topicId"`
 	Content   string    `firestore:"content" json:"content" yaml:"content"`
 	StartedAt time.Time `firestore:"startedAt" json:"startedAt" yaml:"startedAt"`
 	EndedAt   time.Time `firestore:"endedAt" json:"endedAt" yaml:"endedAt"`
@@ -30,18 +30,18 @@ type Activity struct {
 	UpdatedAt time.Time `firestore:"updatedAt" json:"updatedAt" yaml:"updatedAt"`
 }
 
-func (a *Activity) GetProjectId() string {
+func (a *Activity) GetDomainId() string {
 	if a == nil {
 		return ""
 	}
-	return a.ProjectId
+	return a.DomainId
 }
 
-func (a *Activity) GetEpicId() string {
+func (a *Activity) GetTopicId() string {
 	if a == nil {
 		return ""
 	}
-	return a.EpicId
+	return a.TopicId
 }
 
 func (a *Activity) GetContent() string {
@@ -110,8 +110,8 @@ func (a *Activity) GetID() string {
 // ActivityFields contains field names for Activity.
 var ActivityFields = struct {
 	Id        string
-	ProjectId string
-	EpicId    string
+	DomainId  string
+	TopicId   string
 	Content   string
 	StartedAt string
 	EndedAt   string
@@ -122,8 +122,8 @@ var ActivityFields = struct {
 	UpdatedAt string
 }{
 	Id:        "id",
-	ProjectId: "projectId",
-	EpicId:    "epicId",
+	DomainId:  "domainId",
+	TopicId:   "topicId",
 	Content:   "content",
 	StartedAt: "startedAt",
 	EndedAt:   "endedAt",
